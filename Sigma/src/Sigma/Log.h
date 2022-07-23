@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "Core.h"
-#include "spdlog/spdlog.h"
+#include <spdlog/spdlog.h>
 
 #define SIGMA_CORE_TRACE(...) ::Sigma::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define SIGMA_CORE_INFO(...) ::Sigma::Log::GetCoreLogger()->info(__VA_ARGS__)

@@ -15,7 +15,7 @@ project "Sigma"
 	language "C++"
 
 	targetdir ("bin/" ..  outputdir .. "/%{prj.name}")
-	targetdir ("bin-int/" ..  outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" ..  outputdir .. "/%{prj.name}")
 
 	files {
 		"%{prj.name}/src/**.h",
@@ -58,7 +58,7 @@ project "Sandbox"
 	language "C++"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	targetdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files {
 		"%{prj.name}/src/**.h",
@@ -66,12 +66,12 @@ project "Sandbox"
 	}
 
 	includedirs {
-		"%{prj.name}/vendor/spdlog/include",
+		"Sigma/vendor/spdlog/include",
 		"Sigma/src"
 	}
 
 	links {
-		"SIGMA"
+		"Sigma"
 	}
 
 	filter "system:windows"

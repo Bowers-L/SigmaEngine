@@ -1,17 +1,17 @@
-#include <Sigma.h>
+#include <sigma.h>
 
-class SandboxApp : public Sigma::Application 
+class sandboxapp : public Sigma::Application 
 {
 public:
-	SandboxApp() {
+	sandboxapp() {
 		
 	}
 
-	~SandboxApp() {
+	~sandboxapp() {
 
 	}
 };
 
 Sigma::Application* Sigma::CreateApplication() {
-	return new SandboxApp();
+	return new sandboxapp();
 }

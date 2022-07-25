@@ -20,11 +20,11 @@ namespace SigmaEngine {
 		enum EventCategory
 		{
 			None = 0,
-			EventCategoryApplication = BIT(0),
-			EventCategoryInput = BIT(1),
-			EventCategoryKeyboard = BIT(2),
-			EventCategoryMouse = BIT(3),
-			EventCategoryMouseButton = BIT(4)
+			EventCategoryApplication = BITFIELD(0),
+			EventCategoryInput = BITFIELD(1),
+			EventCategoryKeyboard = BITFIELD(2),
+			EventCategoryMouse = BITFIELD(3),
+			EventCategoryMouseButton = BITFIELD(4)
 		};
 
 		//Event Macros: Automatically defines functions in derived classes based on type and category.

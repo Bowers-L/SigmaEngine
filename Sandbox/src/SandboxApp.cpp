@@ -1,6 +1,6 @@
 #include <sigma.h>
 
-class sandboxapp : public Sigma::Application 
+class sandboxapp : public SigmaEngine::Application
 {
 public:
 	sandboxapp() {
@@ -12,6 +12,6 @@ public:
 	}
 };
 
-Sigma::Application* Sigma::CreateApplication() {
+SigmaEngine::Application* SigmaEngine::CreateApplication() {
 	return new sandboxapp();
 }

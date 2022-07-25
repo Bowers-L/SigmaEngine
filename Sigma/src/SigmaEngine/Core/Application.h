@@ -2,7 +2,7 @@
 
 #include "Core.h"
 
-namespace Sigma {
+namespace SigmaEngine {
 	class SIGMA_API Application
 	{
 	public:

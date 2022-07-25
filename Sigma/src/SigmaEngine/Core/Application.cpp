@@ -2,7 +2,7 @@
 #include "Application.h"
 #include <stdio.h>
 
-namespace Sigma {
+namespace SigmaEngine {
 	Application::Application()
 	{
 	}

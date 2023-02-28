@@ -1,3 +1,6 @@
 [submodule "Sigma/vendor/spdlog"]
 	path = Sigma/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Sigma/vendor/GLFW_L"]
+	path = Sigma/vendor/GLFW_L
+	url = https://github.com/Bowers-L/glfw.git

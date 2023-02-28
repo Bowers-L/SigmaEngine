@@ -10,9 +10,9 @@ workspace "Sigma"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "Sigma/vendor/GLFW/include"
+IncludeDir["GLFW"] = "Sigma/vendor/GLFW_L/include"
 
-include "Sigma/vendor/GLFW"
+include "Sigma/vendor/GLFW_L"
 
 project "Sigma"
 	location "Sigma"

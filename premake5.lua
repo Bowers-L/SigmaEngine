@@ -23,8 +23,10 @@ project "Sigma"
 	}
 
 	includedirs {
+		"%{prj.name}/vendor/glm-master",
+		"%{prj.name}/vendor/glad/include",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/src"
+		"%{prj.name}/src",
 	}
 
 	filter "system:windows"

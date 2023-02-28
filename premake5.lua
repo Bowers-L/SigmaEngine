@@ -19,7 +19,8 @@ project "Sigma"
 
 	files {
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glad/src/glad.c",
 	}
 
 	includedirs {
@@ -31,11 +32,11 @@ project "Sigma"
 	}
 
 	libdirs {
-		"%{prj.name}/vendor/GLFW/lib-vc2022"
+		"%{prj.name}/vendor/GLFW/lib-vc2022",
 	}
 
 	links {
-		"glfw3.lib"
+		"glfw3.lib",
 	}
 
 	filter "system:windows"

@@ -9,6 +9,11 @@ workspace "Sigma"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Sigma/vendor/GLFW/include"
+
+include "Sigma/vendor/GLFW"
+
 project "Sigma"
 	location "Sigma"
 	kind "SharedLib"
@@ -26,28 +31,16 @@ project "Sigma"
 	}
 
 	includedirs {
-		"%{prj.name}/vendor/GLFW/include",
+		"%{IncludeDir.GLFW}",
 		"%{prj.name}/vendor/glm-master",
 		"%{prj.name}/vendor/glad/include",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/src",
 	}
 
-	libdirs {
-		"%{prj.name}/vendor/GLFW/lib-vc2022",
-	}
-
 	links {
-		"glfw3",
-		"glfw3_mt",
+		"GLFW",
 		"opengl32",
-		"user32",
-		"kernel32",
-	}
-
-	defines {
-		"_GLFW_WIN32",
-		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	filter "system:windows"
@@ -67,6 +60,7 @@ project "Sigma"
 	filter "configurations:Debug"
 		defines "SIGMA_DEBUG"
 		symbols "On"
+		buildoptions "/MT"
 
 	filter "configurations:Release"
 		defines "SIGMA_RELEASE"

@@ -4,3 +4,6 @@
 [submodule "glfw"]
 	path = glfw
 	url = https://github.com/TheCherno/glfw.git
+[submodule "Sigma/vendor/GLFW"]
+	path = Sigma/vendor/GLFW
+	url = https://github.com/TheCherno/glfw.git

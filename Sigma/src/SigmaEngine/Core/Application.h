@@ -9,7 +9,7 @@ namespace SigmaEngine {
 		Application();
 		virtual ~Application();
 
-		void Run();
+		int Run();
 
 
 	};

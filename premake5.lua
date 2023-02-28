@@ -23,10 +23,19 @@ project "Sigma"
 	}
 
 	includedirs {
+		"%{prj.name}/vendor/GLFW/include",
 		"%{prj.name}/vendor/glm-master",
 		"%{prj.name}/vendor/glad/include",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/src",
+	}
+
+	libdirs {
+		"%{prj.name}/vendor/GLFW/lib-vc2022"
+	}
+
+	links {
+		"glfw3.lib"
 	}
 
 	filter "system:windows"

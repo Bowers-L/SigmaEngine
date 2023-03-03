@@ -41,13 +41,13 @@ namespace SigmaEngine
         m_Window = glfwCreateWindow(props.width, props.height, props.title.c_str(), NULL, NULL);
         SG_CORE_ASSERT(m_Window != nullptr, "Failed to create GLFW window.");
 
-    	GLCall(glViewport(0, 0, 800, 600));
-
         /* Make the window's context current */
         glfwMakeContextCurrent(m_Window);
 
         int gladSuccess = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         SG_CORE_ASSERT(gladSuccess, "Failed to initialize GLAD");
+
+        GLCall(glViewport(0, 0, props.width, props.height));
     }
 
     bool Window::shouldClose()
@@ -79,7 +79,6 @@ namespace SigmaEngine
     void Window::close()
     {
         glfwDestroyWindow(m_Window);
-        delete m_Window;
         glfwTerminate();
     }
 }

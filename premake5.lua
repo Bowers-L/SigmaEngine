@@ -19,8 +19,9 @@ include "Sigma/vendor/GLFW_L"
 
 project "Sigma"
 	location "Sigma"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	staticruntime "on"
 
 	targetdir ("bin/" ..  outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" ..  outputdir .. "/%{prj.name}")
@@ -56,7 +57,7 @@ project "Sigma"
 		}
 
 		postbuildcommands {
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			--("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
 
 	filter "configurations:Debug"
@@ -66,24 +67,22 @@ project "Sigma"
 		}
 		symbols "Off"
 		runtime "Debug"
-		staticruntime "Off"
 
 	filter "configurations:Release"
 		defines "SIGMA_RELEASE"
 		symbols "Off"
 		runtime "Release"
-		staticruntime "Off"
 
 	filter "configurations:Dist"
 		defines "SIGMA_DIST"
 		symbols "Off"
 		runtime "Release"
-		staticruntime "Off"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -107,7 +106,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -118,16 +116,13 @@ project "Sandbox"
 		defines "SIGMA_DEBUG"
 		symbols "On"
 		runtime "Debug"
-		staticruntime "On"
 
 	filter "configurations:Release"
 		defines "SIGMA_RELEASE"
 		symbols "On"
 		runtime "Release"
-		staticruntime "On"
 
 	filter "configurations:Dist"
 		defines "SIGMA_DIST"
 		symbols "On"
 		runtime "Release"
-		staticruntime "On"

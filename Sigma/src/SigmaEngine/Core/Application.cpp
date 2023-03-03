@@ -7,18 +7,19 @@
 
 #include <string.h>
 
-
 using namespace SigmaEngine::Events;
 
 namespace SigmaEngine {
 	Application::Application()
 	{
 		m_Window = Window::create();
+		//m_Renderer = Renderer::create(m_Window->getWidth(), m_Window->getHeight());
 	}
 
 	Application::~Application()
 	{
 		delete m_Window;
+		//delete m_Renderer;
 	}
 
 	int Application::Run()

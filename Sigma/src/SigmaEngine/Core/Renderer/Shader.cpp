@@ -51,7 +51,7 @@ unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 	if (result == GL_FALSE) {
 		int length;
 		GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
-		char* message = (char*)alloca(length * sizeof(char));
+		char* message = (char*) alloca(length * sizeof(char));
 		GLCall(glGetShaderInfoLog(id, length, &length, message));
 
 		SG_ERROR("Failed to compile shader: %s", message);

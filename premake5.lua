@@ -11,6 +11,9 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Sigma/vendor/GLFW_L/include"
+IncludeDir["Glad"] = "Sigma/vendor/glad/include"
+IncludeDir["Glm"] = "Sigma/vendor/glm-master"
+IncludeDir["SpdLog"] = "Sigma/vendor/spdlog/include"
 
 include "Sigma/vendor/GLFW_L"
 
@@ -32,9 +35,9 @@ project "Sigma"
 
 	includedirs {
 		"%{IncludeDir.GLFW}",
-		"%{prj.name}/vendor/glm-master",
-		"%{prj.name}/vendor/glad/include",
-		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.Glm}",
+		"%{IncludeDir.SpdLog}",
 		"%{prj.name}/src",
 	}
 
@@ -91,7 +94,10 @@ project "Sandbox"
 	}
 
 	includedirs {
-		"Sigma/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.Glm}",
+		"%{IncludeDir.SpdLog}",
 		"Sigma/src"
 	}
 

@@ -47,7 +47,7 @@ namespace SigmaEngine
         int gladSuccess = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         SG_CORE_ASSERT(gladSuccess, "Failed to initialize GLAD");
 
-        GLCall(glViewport(0, 0, props.width, props.height));
+        //GLCall(glViewport(0, 0, props.width, props.height));
     }
 
     bool Window::shouldClose()

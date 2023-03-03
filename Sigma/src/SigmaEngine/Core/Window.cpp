@@ -5,65 +5,81 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-SigmaEngine::Window::Window() 
-{
-}
+#include "SigmaEngine/Util/GLDebug.h"
 
-SigmaEngine::Window::~Window()
+namespace SigmaEngine
 {
-    close();
-    delete m_Window;
-}
-
-bool SigmaEngine::Window::init(std::string name) {
-    /* Initialize the library */
-    if (!glfwInit()) {
-        SIGMA_CORE_ERROR("Failed to initialize GLFW.");
-        return nullptr;
+    Window* SigmaEngine::Window::create(const WindowProps& props)
+    {
+        return new Window(props);
     }
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-
-    /* Create a windowed mode window and its OpenGL context */
-    m_Window = glfwCreateWindow(800, 600, name.c_str(), NULL, NULL);
-    if (!m_Window)
+    Window::Window(const WindowProps& props)
     {
-        SIGMA_CORE_ERROR("Failed to create GLFW window.");
+        init(props);
+    }
+
+    Window::~Window()
+    {
+        close();
+    }
+
+    void Window::init(const WindowProps& props)
+    {
+        m_Props = props;
+
+        /* Initialize the library */
+        int glfwSuccess = glfwInit();
+        SG_CORE_ASSERT(glfwSuccess, "Failed to initialize GLFW.")
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+
+        /* Create a windowed mode window and its OpenGL context */
+        m_Window = glfwCreateWindow(props.width, props.height, props.title.c_str(), NULL, NULL);
+        SG_CORE_ASSERT(m_Window != nullptr, "Failed to create GLFW window.");
+
+    	GLCall(glViewport(0, 0, 800, 600));
+
+        /* Make the window's context current */
+        glfwMakeContextCurrent(m_Window);
+
+        int gladSuccess = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+        SG_CORE_ASSERT(gladSuccess, "Failed to initialize GLAD");
+    }
+
+    bool Window::shouldClose()
+    {
+        return glfwWindowShouldClose(m_Window);
+    }
+
+    void Window::update()
+    {
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        /* Swap front and back buffers */
+        glfwSwapBuffers(m_Window);
+
+        /* Poll for and process events */
+        glfwPollEvents();
+    }
+
+    uint32_t Window::getWidth() const
+    {
+        return m_Props.width;
+    }
+
+    uint32_t Window::getHeight() const
+    {
+        return m_Props.height;
+    }
+
+    void Window::close()
+    {
+        glfwDestroyWindow(m_Window);
+        delete m_Window;
         glfwTerminate();
-        return false;
     }
-
-    //GLCall(glViewport(0, 0, 800, 600));
-
-    /* Make the window's context current */
-    glfwMakeContextCurrent(m_Window);
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        SIGMA_CORE_ERROR("Failed to initialize glad");
-        return false;
-    }
-
-    return true;
-}
-
-bool SigmaEngine::Window::shouldClose() {
-    return glfwWindowShouldClose(m_Window);
-}
-
-void SigmaEngine::Window::update() {
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    /* Swap front and back buffers */
-    glfwSwapBuffers(m_Window);
-
-    /* Poll for and process events */
-    glfwPollEvents();
-}
-
-void SigmaEngine::Window::close() {
-    glfwTerminate();
 }

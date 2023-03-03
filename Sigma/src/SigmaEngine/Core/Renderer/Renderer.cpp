@@ -15,7 +15,7 @@ m_Width(width), m_Height(height), m_Shader(nullptr)
 		s_Instance = this;
 	}
 	else {
-		SIGMA_WARN("Renderer is a singleton, but there was an attempt to construct it twice.");
+		SG_WARN("Renderer is a singleton, but there was an attempt to construct it twice.");
 	}
 }
 
@@ -49,7 +49,7 @@ void Renderer::setClearColor(float r, float g, float b, float a)
 void Renderer::drawRect(int x, int y, int width, int height) 
 {
 	if (s_Instance->m_Shader == nullptr) {
-		SIGMA_ERROR("Renderer must have shader set.");
+		SG_ERROR("Renderer must have shader set.");
 		return;
 	}
 
@@ -84,7 +84,7 @@ void Renderer::drawRect(int x, int y, int width, int height)
 
 void Renderer::draw(const VertexArray& va, const IndexBuffer& ib) {
 	if (s_Instance->m_Shader == nullptr) {
-		SIGMA_ERROR("Renderer must have shader set.");
+		SG_ERROR("Renderer must have shader set.");
 		return;
 	}
 

@@ -8,7 +8,7 @@ namespace SigmaEngine {
 	class SIGMA_API Application
 	{
 	private:
-		Window m_Window;
+		Window* m_Window;
 	public:
 		Application();
 		virtual ~Application();

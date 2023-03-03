@@ -7,16 +7,37 @@
 extern class GLFWwindow;
 
 namespace SigmaEngine {
+
+	struct WindowProps
+	{
+		std::string title;
+		unsigned int width, height;
+
+		WindowProps(const std::string& title = "Sigma",
+			uint32_t width = 800,
+			uint32_t height = 600)
+		: title(title), width(width), height(height)
+		{}
+	};
+
 	class SIGMA_API Window {
 	private:
 		GLFWwindow* m_Window;
+		WindowProps m_Props;
+
+		Window(const WindowProps& props = WindowProps());
 	public:
-		Window();
+		static Window* create(const WindowProps& props = WindowProps());
+
 		~Window();
 
-		bool init(std::string name);
+		uint32_t getWidth() const;
+		uint32_t getHeight() const;
+
 		void update();
 		void close();
 		bool shouldClose();
+	private:
+		void init(const WindowProps& props = WindowProps());
 	};
 }

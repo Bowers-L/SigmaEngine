@@ -13,23 +13,21 @@ using namespace SigmaEngine::Events;
 namespace SigmaEngine {
 	Application::Application()
 	{
+		m_Window = Window::create();
 	}
 
 	Application::~Application()
 	{
+		delete m_Window;
 	}
 
 	int Application::Run()
 	{
-		if (!m_Window.init("YOOO MR WHITE")) {
-			SIGMA_CORE_ERROR("Failed to create window.");
+		while (!m_Window->shouldClose()) {
+			m_Window->update();
 		}
 
-		while (!m_Window.shouldClose()) {
-			m_Window.update();
-		}
-
-		m_Window.close();
+		m_Window->close();
 
 		return 0;
 	}

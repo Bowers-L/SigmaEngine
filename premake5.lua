@@ -49,7 +49,7 @@ project "Sigma"
 
 		defines {
 			"SIGMA_PLATFORM_WINDOWS",
-			"SIGMA_BUILD_DLL"
+			"SIGMA_BUILD_DLL",
 		}
 
 		postbuildcommands {
@@ -57,7 +57,10 @@ project "Sigma"
 		}
 
 	filter "configurations:Debug"
-		defines "SIGMA_DEBUG"
+		defines {
+			"SIGMA_DEBUG",
+			"SG_ENABLE_ASSERTS"
+		}
 		symbols "Off"
 		runtime "Debug"
 		staticruntime "Off"

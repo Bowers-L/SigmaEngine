@@ -54,7 +54,7 @@ unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 		char* message = (char*)alloca(length * sizeof(char));
 		GLCall(glGetShaderInfoLog(id, length, &length, message));
 
-		SIGMA_ERROR("Failed to compile shader: %s", message);
+		SG_ERROR("Failed to compile shader: %s", message);
 		return 0;
 	}
 
@@ -142,7 +142,7 @@ int Shader::getUniformLocation(const std::string& name)
 
 	GLCall(int location = glGetUniformLocation(m_ShaderID, name.c_str()));
 	if (location == -1) {
-		SIGMA_ERROR("Uniform %s does not exist.", name);
+		SG_ERROR("Uniform %s does not exist.", name);
 	}
 	return location;
 }

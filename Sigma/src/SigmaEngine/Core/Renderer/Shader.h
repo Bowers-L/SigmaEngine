@@ -23,15 +23,15 @@ public:
 	void unbind() const;
 
 	//uniforms
-	void setUniform1i(const std::string& name, int i);
-	void setUniform1f(const std::string& name, float f);
-	void setUniform3f(const std::string& name, float f0, float f1, float f2);
-	void setUniform4f(const std::string& name, float f0, float f1, float f2, float f3);
-	void setUniformMat4f(const std::string& name, const glm::mat4& mat4);
+	void setUniform1i(const std::string& name, int i) const;
+	void setUniform1f(const std::string& name, float f) const;
+	void setUniform3f(const std::string& name, float f0, float f1, float f2) const;
+	void setUniform4f(const std::string& name, float f0, float f1, float f2, float f3) const;
+	void setUniformMat4f(const std::string& name, const glm::mat4& mat4) const;
 private:
 	unsigned int createShader(const std::string& vertextShader, const std::string& fragmentShader);
 	unsigned int compileShader(unsigned int type, const std::string& source);
 	ShaderProgramSource parseShader(const std::string& filepath);
 	
-	int getUniformLocation(const std::string& name);
+	int getUniformLocation(const std::string& name) const;
 };

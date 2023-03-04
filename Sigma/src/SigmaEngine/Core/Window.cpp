@@ -57,7 +57,7 @@ namespace SigmaEngine
 
     void Window::update()
     {
-        /* Swap front and back buffers *
+        /* Swap front and back buffers */
         glfwSwapBuffers(m_Window);
 
         /* Poll for and process events */

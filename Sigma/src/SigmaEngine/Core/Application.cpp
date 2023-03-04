@@ -27,11 +27,9 @@ namespace SigmaEngine {
 		const bool startupSuccess = Startup();
 		SG_CORE_ASSERT(startupSuccess, "Could not startup application.");
 
+		m_Renderer->setClearColor(0.f, 0.f, 0.f, 1.f);
 		while (!m_Window->shouldClose())
 		{
-			GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
-			GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-
 			Update();
 			Draw();
 
@@ -57,7 +55,13 @@ namespace SigmaEngine {
 
 	void Application::Draw()
 	{
-		m_Renderer->drawRect(0, 0, 100, 100);
+		m_Renderer->clear();
+
+		const Shader* shader = m_Renderer->shader();
+		shader->setUniformMat4f("u_MVP", glm::mat4(1));
+		shader->setUniform4f("u_Color", 1.f, 1.f, 1.f, 1.f);
+
+		m_Renderer->drawRect(m_Window->getWidth() / 2-50, m_Window->getHeight() / 2-50, 100, 100);
 		OnDraw();
 	}
 }

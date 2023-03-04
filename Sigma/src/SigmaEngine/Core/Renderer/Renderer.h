@@ -63,6 +63,8 @@ namespace SigmaEngine {
 
 		void clear();
 		void setClearColor(float r, float g, float b, float a);
+
+		const Shader* shader();
 		void setShader(const Shader& shader);
 
 		void drawRect(int x, int y, int width, int height);

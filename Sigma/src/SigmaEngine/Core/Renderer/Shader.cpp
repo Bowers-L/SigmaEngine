@@ -7,7 +7,6 @@
 
 #include <glm/glm.hpp>
 
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -17,6 +16,7 @@ Shader::Shader(const std::string& filepath)
 {
 	ShaderProgramSource source = parseShader(filepath);
 	m_ShaderID = createShader(source.VertexSource, source.FragmentSource);
+	SG_CORE_INFO("Created shader with id {}", m_ShaderID);
 }
 
 Shader::~Shader()
@@ -54,7 +54,7 @@ unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 		char* message = (char*) alloca(length * sizeof(char));
 		GLCall(glGetShaderInfoLog(id, length, &length, message));
 
-		SG_ERROR("Failed to compile shader: %s", message);
+		SG_CORE_ERROR("Failed to compile shader: ", message);
 		return 0;
 	}
 

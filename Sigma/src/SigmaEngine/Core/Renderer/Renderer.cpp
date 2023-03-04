@@ -4,12 +4,11 @@
 #include "SigmaEngine/Util/GLDebug.h"
 
 #include <glm/glm.hpp>
-#include <glm/ext.hpp>
 
 namespace SigmaEngine {
 
 	Renderer::Renderer(int width, int height) :
-		m_Width(width), m_Height(height), m_BuiltInShaders("Built-In-Shaders", { "Basic.shader" })
+		m_Width(width), m_Height(height), m_BuiltInShaders("Built-In-Shaders", { "basic.shader" })
 	{
 		m_Shader = m_BuiltInShaders.get("basic.shader");
 	}
@@ -48,17 +47,17 @@ namespace SigmaEngine {
 
 	void Renderer::drawRect(int x, int y, int width, int height)
 	{
-		float normX = pixelToNormX(x);
-		float normY = pixelToNormY(y);
-		float normXPlusWidth = pixelToNormX(x + width);
-		float normYPlusHeight = pixelToNormY(y + height);
+		const float normX = pixelToNormX(x);
+		const float normY = pixelToNormY(y);
+		const float normXPlusWidth = pixelToNormX(x + width);
+		const float normYPlusHeight = pixelToNormY(y + height);
 
 		//DEBUG_LOG("PIXEL POINTS: %d, %d, %d, %d", x, y, w, h);
 		//DEBUG_LOG("POINTS: %f, %f, %f, %f", nx, ny, nxw, nyh);
-		float vertices[] = { normX, normY, 0.0f,
-								normXPlusWidth, normY, 0.0f,
-								normX, normYPlusHeight, 0.0f,
-								normXPlusWidth, normYPlusHeight, 0.0f,
+		glm::vec3 vertices[] = { glm::vec3(normX, normY, 0.0f),
+								glm::vec3(normXPlusWidth, normY, 0.0f),
+								glm::vec3(normX, normYPlusHeight, 0.0f),
+								glm::vec3(normXPlusWidth, normYPlusHeight, 0.0f),
 		};
 
 		unsigned int indices[] = { 0, 1, 2,

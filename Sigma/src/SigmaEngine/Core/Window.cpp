@@ -33,7 +33,7 @@ namespace SigmaEngine
         SG_CORE_ASSERT(glfwSuccess, "Failed to initialize GLFW.")
 
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 
@@ -57,9 +57,7 @@ namespace SigmaEngine
 
     void Window::update()
     {
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        /* Swap front and back buffers */
+        /* Swap front and back buffers *
         glfwSwapBuffers(m_Window);
 
         /* Poll for and process events */

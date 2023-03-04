@@ -27,13 +27,14 @@ namespace SigmaEngine {
 		void init() {
 			for (auto& name : m_ShaderNames) {
 				std::filesystem::path pathToShader = m_PathToShaders / name;
+				SG_CORE_INFO("Making Shader: {}", pathToShader.generic_string());
 				m_Shaders[name] = std::make_unique<Shader>(pathToShader.generic_string());
 			}
 		}
 
 		const Shader* get(const std::string shaderName) {
 			if (m_Shaders.find(shaderName) == m_Shaders.end()) {
-				SG_CORE_ERROR("Could not find shader: %s", shaderName);
+				SG_CORE_ERROR("Could not find shader: {}", shaderName);
 			}
 
 			return m_Shaders[shaderName].get();

@@ -16,6 +16,15 @@ namespace SigmaEngine {
 		virtual ~Application();
 
 		int Run();
+
+		bool Startup();	//Called when application starts.
+		void Update();
+		void Draw();
+
+		virtual void OnStart() {}	//Called after startup
+		virtual void OnUpdate() {}	//Update before drawing
+		virtual void OnDraw() {}	//Render game objects
+		virtual void OnQuit() {}	//Called right before the window closes.
 	};
 
 	Application* CreateApplication();	//Define in Client

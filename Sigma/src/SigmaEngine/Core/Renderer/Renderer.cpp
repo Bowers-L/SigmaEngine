@@ -8,12 +8,15 @@
 namespace SigmaEngine {
 
 	Renderer::Renderer(int width, int height) :
-		m_Width(width), m_Height(height), m_BuiltInShaders("Assets/Shaders", { "basic.shader" })
+		m_Width(width), m_Height(height), //m_BuiltInShaders(std::filesystem::path("..") / "Sigma" / "Assets" / "Shaders", { "basic.shader" })
+		m_BuiltInShaders(std::filesystem::path("Assets/Shaders"), { "basic.shader" })
 	{
 		m_Shader = m_BuiltInShaders.get("basic.shader");
+		//m_Shader = new Shader("../Sigma/Assets/Shaders/basic.shader");	//FSTREAM FILEPATHS ARE RELATIVE TO THE PROJECT DIR !!!!!!!!!!!!!!!
 	}
 
 	Renderer::~Renderer() {
+		delete m_Shader;
 	}
 
 	Renderer* Renderer::create(int width, int height) {

@@ -25,8 +25,8 @@ Shader::~Shader()
 }
 
 unsigned int Shader::createShader(const std::string& vertexShader, const std::string& fragmentShader) {
-	SG_CORE_INFO("Vertex Source {}", vertexShader);
-	SG_CORE_INFO("Fragment Source {}", fragmentShader);
+	//SG_CORE_INFO("Vertex Source {}", vertexShader);
+	//SG_CORE_INFO("Fragment Source {}", fragmentShader);
 
 	unsigned int program = glCreateProgram();
 	unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShader);
@@ -85,14 +85,14 @@ ShaderProgramSource Shader::parseShader(const std::string& filepath) {
 
 	ShaderType type = ShaderType::NONE;
 	while (getline(stream, line)) {	//Getting a line from the stream and storing it in the line variable
-		SG_CORE_INFO("Line {}", line);
+		//SG_CORE_INFO("Line {}", line);
 		if (line.find("#shader") != std::string::npos) {	//std::string::npos is the equivalent of -1 (used to check for matches)
 			if (line.find("vertex") != std::string::npos) {
-				SG_CORE_INFO("Found Vertex");
+				//SG_CORE_INFO("Found Vertex");
 				type = ShaderType::VERTEX;
 			}
 			else if (line.find("fragment") != std::string::npos) {
-				SG_CORE_INFO("Found Fragment");
+				//SG_CORE_INFO("Found Fragment");
 				type = ShaderType::FRAGMENT;
 			}
 		}

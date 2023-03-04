@@ -11,13 +11,13 @@
 
 namespace SigmaEngine {
 	struct ShaderList {
-		const std::filesystem::path m_PathToShaders;
+		const std::filesystem::path m_RelativeDir;
 		const std::vector<std::string> m_ShaderNames;
 
 		std::unordered_map<std::string, std::unique_ptr<Shader>> m_Shaders;
 
-		ShaderList(const std::filesystem::path pathToShaders, const std::vector<std::string> shaderNames) 
-		: m_PathToShaders(pathToShaders), m_ShaderNames(shaderNames) {
+		ShaderList(const std::filesystem::path relativeDir, const std::vector<std::string> shaderNames) 
+		: m_RelativeDir(relativeDir), m_ShaderNames(shaderNames) {
 			init();
 		}
 
@@ -26,9 +26,9 @@ namespace SigmaEngine {
 
 		void init() {
 			for (auto& name : m_ShaderNames) {
-				std::filesystem::path pathToShader = m_PathToShaders / name;
-				SG_CORE_INFO("Making Shader: {}", pathToShader.generic_string());
-				m_Shaders[name] = std::make_unique<Shader>(pathToShader.generic_string());
+				std::filesystem::path shaderFilepath = std::filesystem::current_path() / m_RelativeDir / name;
+				SG_CORE_INFO("Making Shader: {}", shaderFilepath.string());
+				m_Shaders[name] = std::make_unique<Shader>(shaderFilepath.string());
 			}
 		}
 

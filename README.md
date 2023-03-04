@@ -1,2 +1,2 @@
 # Sigma
-Sigma Engine (Derivative of Hazel Engine)
+Sigma Engine

@@ -29,6 +29,7 @@ project "Sigma"
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/Assets/**.shader",
 		"%{prj.name}/vendor/glad/src/glad.c",
 		"%{prj.name}/vendor/**.lib",
 		"%{prj.name}/vendor/**.h",
@@ -88,8 +89,10 @@ project "Sandbox"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files {
+		"Sigma/Assets/**.shader",
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/Assets/**.shader"
 	}
 
 	includedirs {

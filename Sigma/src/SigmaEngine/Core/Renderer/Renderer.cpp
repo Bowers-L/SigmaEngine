@@ -8,7 +8,7 @@
 namespace SigmaEngine {
 
 	Renderer::Renderer(int width, int height) :
-		m_Width(width), m_Height(height), m_BuiltInShaders("Built-In-Shaders", { "basic.shader" })
+		m_Width(width), m_Height(height), m_BuiltInShaders("Assets/Shaders", { "basic.shader" })
 	{
 		m_Shader = m_BuiltInShaders.get("basic.shader");
 	}

@@ -34,7 +34,6 @@ namespace SigmaEngine {
 		uint32_t getWidth() const;
 		uint32_t getHeight() const;
 
-		void initImGuiFrame();
 		void drawFrame();
 		void close();
 		bool shouldClose();

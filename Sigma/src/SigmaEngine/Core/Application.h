@@ -20,6 +20,7 @@ namespace SigmaEngine {
 		bool Startup();	//Called when application starts.
 		void Update();
 		void Draw();
+		void Shutdown();
 		void ImGuiDraw();
 
 		virtual void OnStart() {}	//Called after startup

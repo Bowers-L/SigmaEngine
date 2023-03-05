@@ -58,12 +58,6 @@ namespace SigmaEngine
         //GLCall(glViewport(0, 0, props.width, props.height));
     }
 
-    void Window::initImGuiFrame() {
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-    }
-
     bool Window::shouldClose()
     {
         return glfwWindowShouldClose(m_Window);

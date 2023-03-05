@@ -9,6 +9,7 @@
 
 #include <imgui.h>
 #include <backends/imgui_impl_opengl3.h>
+#include <backends/imgui_impl_glfw.h>
 
 using namespace SigmaEngine::Events;
 
@@ -33,7 +34,9 @@ namespace SigmaEngine {
 		m_Renderer->setClearColor(0.f, 0.f, 0.f, 1.f);
 		while (!m_Window->shouldClose())
 		{
-			m_Window->initImGuiFrame();
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
 
 			Update();
 			Draw();
@@ -43,7 +46,7 @@ namespace SigmaEngine {
 		}
 
 		OnQuit();
-		m_Window->close();
+		Shutdown();
 
 		return 0;
 	}
@@ -51,7 +54,6 @@ namespace SigmaEngine {
 	bool Application::Startup()
 	{
 		OnStart();
-
 		return true;
 	}
 
@@ -63,12 +65,6 @@ namespace SigmaEngine {
 	void Application::Draw()
 	{
 		m_Renderer->clear();
-
-		const Shader* shader = m_Renderer->shader();
-		shader->setUniformMat4f("u_MVP", glm::mat4(1));
-		shader->setUniform4f("u_Color", 0.f, 1.f, 0.f, 1.f);
-
-		m_Renderer->drawRect(m_Window->getWidth() / 2-50, m_Window->getHeight() / 2-50, 100, 100);
 		OnDraw();
 	}
 
@@ -76,6 +72,14 @@ namespace SigmaEngine {
 		OnImGuiDraw();
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
+
+	void Application::Shutdown() {
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
+
+		m_Window->close();
 	}
 }
 

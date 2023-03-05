@@ -1,4 +1,5 @@
 #include <sigma.h>
+#include <imgui.h>
 
 class SandboxApp : public SigmaEngine::Application
 {
@@ -11,10 +12,12 @@ class SandboxApp : public SigmaEngine::Application
 	}
 
 	void OnImGuiDraw() override {
-
+		ImGui::Begin("Yo Mr. White checkout this debug window.");
+		ImGui::Text("Here's some text lol.");
+		ImGui::End();
 	}
 };
 
 SigmaEngine::Application* SigmaEngine::CreateApplication() {
-	return new Application();
+	return new SandboxApp();
 }

@@ -13,6 +13,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Sigma/vendor/GLFW_L/include"
 IncludeDir["Glad"] = "Sigma/vendor/glad/include"
 IncludeDir["Glm"] = "Sigma/vendor/glm-master"
+IncludeDir["ImGui"] = "Sigma/vendor/imgui"
 IncludeDir["SpdLog"] = "Sigma/vendor/spdlog/include"
 
 include "Sigma/vendor/GLFW_L"
@@ -30,15 +31,25 @@ project "Sigma"
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/Assets/**.shader",
-		"%{prj.name}/vendor/glad/src/glad.c",
+		"%{prj.name}/vendor/glad/**.c",
+		"%{IncludeDir.ImGui}/*.cpp",
+
+		--ImGui Backends
+		"%{IncludeDir.ImGui}/backends/imgui_impl_opengl3.h",
+		"%{IncludeDir.ImGui}/backends/imgui_impl_opengl3.cpp",
+		"%{IncludeDir.ImGui}/backends/imgui_impl_glfw.h",
+		"%{IncludeDir.ImGui}/backends/imgui_impl_glfw.cpp",
+
 		"%{prj.name}/vendor/**.lib",
-		"%{prj.name}/vendor/**.h",
+		--"%{prj.name}/vendor/**.h",
+		--"%{prj.name}/vendor/**.hpp"
 	}
 
 	includedirs {
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.Glm}",
+		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.SpdLog}",
 		"%{prj.name}/src",
 	}
@@ -99,6 +110,7 @@ project "Sandbox"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.Glm}",
+		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.SpdLog}",
 		"Sigma/src"
 	}

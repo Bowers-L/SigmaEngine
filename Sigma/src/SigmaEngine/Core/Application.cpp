@@ -7,6 +7,9 @@
 
 #include <string.h>
 
+#include <imgui.h>
+#include <backends/imgui_impl_opengl3.h>
+
 using namespace SigmaEngine::Events;
 
 namespace SigmaEngine {
@@ -30,10 +33,13 @@ namespace SigmaEngine {
 		m_Renderer->setClearColor(0.f, 0.f, 0.f, 1.f);
 		while (!m_Window->shouldClose())
 		{
+			m_Window->initImGuiFrame();
+
 			Update();
 			Draw();
+			ImGuiDraw();
 
-			m_Window->update();
+			m_Window->drawFrame();
 		}
 
 		OnQuit();
@@ -45,6 +51,7 @@ namespace SigmaEngine {
 	bool Application::Startup()
 	{
 		OnStart();
+
 		return true;
 	}
 
@@ -63,6 +70,12 @@ namespace SigmaEngine {
 
 		m_Renderer->drawRect(m_Window->getWidth() / 2-50, m_Window->getHeight() / 2-50, 100, 100);
 		OnDraw();
+	}
+
+	void Application::ImGuiDraw() {
+		OnImGuiDraw();
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 }
 

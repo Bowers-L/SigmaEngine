@@ -8,7 +8,7 @@
 namespace SigmaEngine {
 	class SIGMA_API Application
 	{
-	private:
+	protected:
 		Window* m_Window;
 		Renderer* m_Renderer;
 	public:
@@ -20,10 +20,12 @@ namespace SigmaEngine {
 		bool Startup();	//Called when application starts.
 		void Update();
 		void Draw();
+		void ImGuiDraw();
 
 		virtual void OnStart() {}	//Called after startup
 		virtual void OnUpdate() {}	//Update before drawing
 		virtual void OnDraw() {}	//Render game objects
+		virtual void OnImGuiDraw() {}
 		virtual void OnQuit() {}	//Called right before the window closes.
 	};
 

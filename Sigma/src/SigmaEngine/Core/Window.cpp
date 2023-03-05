@@ -4,6 +4,9 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <imgui.h>
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
 
 #include "SigmaEngine/Util/GLDebug.h"
 
@@ -32,9 +35,10 @@ namespace SigmaEngine
         int glfwSuccess = glfwInit();
         SG_CORE_ASSERT(glfwSuccess, "Failed to initialize GLFW.")
 
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        const char* glsl_version = "#version 330 core";
 
 
         /* Create a windowed mode window and its OpenGL context */
@@ -47,7 +51,17 @@ namespace SigmaEngine
         int gladSuccess = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         SG_CORE_ASSERT(gladSuccess, "Failed to initialize GLAD");
 
+        ImGui::CreateContext();
+        ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+        ImGui_ImplOpenGL3_Init(glsl_version);
+
         //GLCall(glViewport(0, 0, props.width, props.height));
+    }
+
+    void Window::initImGuiFrame() {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
     }
 
     bool Window::shouldClose()
@@ -55,7 +69,7 @@ namespace SigmaEngine
         return glfwWindowShouldClose(m_Window);
     }
 
-    void Window::update()
+    void Window::drawFrame()
     {
         /* Swap front and back buffers */
         glfwSwapBuffers(m_Window);

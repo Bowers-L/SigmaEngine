@@ -4,3 +4,6 @@
 [submodule "Sigma/vendor/GLFW_L"]
 	path = Sigma/vendor/GLFW_L
 	url = https://github.com/Bowers-L/glfw.git
+[submodule "Sigma/vendor/imgui"]
+	path = Sigma/vendor/imgui
+	url = https://github.com/ocornut/imgui.git

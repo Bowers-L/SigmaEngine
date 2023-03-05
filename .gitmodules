@@ -7,3 +7,6 @@
 [submodule "Sigma/vendor/imgui"]
 	path = Sigma/vendor/imgui
 	url = https://github.com/Bowers-L/imgui.git
+[submodule "Sigma/vendor/imgui_L"]
+	path = Sigma/vendor/imgui_L
+	url = https://github.com/Bowers-L/imgui.git

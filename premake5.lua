@@ -13,7 +13,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Sigma/vendor/GLFW_L/include"
 IncludeDir["Glad"] = "Sigma/vendor/glad/include"
 IncludeDir["Glm"] = "Sigma/vendor/glm-master"
-IncludeDir["ImGui"] = "Sigma/vendor/imgui"
+IncludeDir["ImGui"] = "Sigma/vendor/imgui_L"
 IncludeDir["SpdLog"] = "Sigma/vendor/spdlog/include"
 
 include "Sigma/vendor/GLFW_L"

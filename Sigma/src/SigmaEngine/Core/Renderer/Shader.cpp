@@ -25,6 +25,7 @@ Shader::~Shader()
 }
 
 unsigned int Shader::createShader(const std::string& vertexShader, const std::string& fragmentShader) {
+	//Uncomment if you want to see the parsed src.
 	//SG_CORE_INFO("Vertex Source {}", vertexShader);
 	//SG_CORE_INFO("Fragment Source {}", fragmentShader);
 
@@ -156,7 +157,7 @@ int Shader::getUniformLocation(const std::string& name) const
 
 	GLCall(int location = glGetUniformLocation(m_ShaderID, name.c_str()));
 	if (location == -1) {
-		SG_ERROR("Uniform %s does not exist.", name);
+		SG_ERROR("Uniform {} does not exist.", name);
 	}
 	return location;
 }

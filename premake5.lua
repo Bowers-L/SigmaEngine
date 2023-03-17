@@ -15,6 +15,7 @@ IncludeDir["Glad"] = "Sigma/vendor/glad/include"
 IncludeDir["Glm"] = "Sigma/vendor/glm-master"
 IncludeDir["ImGui"] = "Sigma/vendor/imgui_L"
 IncludeDir["SpdLog"] = "Sigma/vendor/spdlog/include"
+IncludeDir["STBI"] = "Sigma/vendor/stb"
 
 include "Sigma/vendor/GLFW_L"
 
@@ -33,6 +34,7 @@ project "Sigma"
 		"%{prj.name}/Assets/**.shader",
 		"%{prj.name}/vendor/glad/**.c",
 		"%{IncludeDir.ImGui}/*.cpp",
+		"%{IncludeDir.STBI}/*.cpp",
 
 		--ImGui Backends
 		"%{IncludeDir.ImGui}/backends/imgui_impl_opengl3.h",
@@ -51,6 +53,7 @@ project "Sigma"
 		"%{IncludeDir.Glm}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.SpdLog}",
+		"%{IncludeDir.STBI}",
 		"%{prj.name}/src",
 	}
 
@@ -69,6 +72,7 @@ project "Sigma"
 		}
 
 		postbuildcommands {
+			--We're using a static library for the engine now, so don't need this anymore.
 			--("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
 
@@ -112,6 +116,7 @@ project "Sandbox"
 		"%{IncludeDir.Glm}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.SpdLog}",
+		"%{IncludeDir.STBI}",
 		"Sigma/src"
 	}
 

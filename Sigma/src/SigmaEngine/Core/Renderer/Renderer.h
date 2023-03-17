@@ -3,8 +3,8 @@
 #include "SigmaEngine/Core/Log.h"
 
 #include "buffers/Buffers.h"
-
 #include "Shader.h"
+#include "Texture.h"
 
 #include <unordered_map>
 #include <filesystem>
@@ -46,7 +46,6 @@ namespace SigmaEngine {
 	private:
 		ShaderList m_BuiltInShaders;
 		int m_Width, m_Height;
-		const Shader* m_Shader;
 
 		Renderer(int windowWidth, int windowHeight);
 	public:
@@ -64,11 +63,13 @@ namespace SigmaEngine {
 		void clear();
 		void setClearColor(float r, float g, float b, float a);
 
-		const Shader* shader();
-		void setShader(const Shader& shader);
+		ShaderList& builtInShaders();
+		//const Shader* shader();
+		//void setShader(const Shader& shader);
 
 		void drawRect(int x, int y, int width, int height);
-		void draw(const VertexArray& va, const IndexBuffer& ib);
+		void drawTexture(const Texture& tex, int x, int y);
+		//void draw(const VertexArray& va, const IndexBuffer& ib);
 		void draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
 	};
 }

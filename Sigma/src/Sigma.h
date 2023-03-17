@@ -4,6 +4,7 @@
 
 #include "SigmaEngine/Core/Application.h"
 #include "SigmaEngine/Core/Log.h"
+#include "SigmaEngine/Core/Renderer/Texture.h"
 
 //ENTRY POINT
 #include "SigmaEngine/Core/EntryPoint.h"
